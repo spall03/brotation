@@ -3,7 +3,9 @@ import { View, Text, StyleSheet, ScrollView, TouchableOpacity, SafeAreaView } fr
 import { COLORS } from '../constants';
 import { Target, Interaction, MonthlyResult } from '../types';
 import { ChallengeCard } from '../components/ChallengeCard';
-import { getTargets, getInteractions, getMonthlyResults } from '../storage';
+import { PersonCard } from '../components/PersonCard';
+import { BenchSection } from '../components/BenchSection';
+import { getTargets, getInteractions, getMonthlyResults, saveTarget } from '../storage';
 import { getCurrentMonth, suggestMonthlyTarget, getMonthlyHorizontalProgress, getCurrentStreak } from '../challenges';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../../App';
@@ -38,6 +40,17 @@ export function DashboardScreen({ navigation }: Props) {
 
   const monthLabel = new Date().toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
 
+  function getLastInteraction(interactions: Interaction[], targetId: string): Interaction | undefined {
+    return interactions.filter((i) => i.targetId === targetId).sort((a, b) => b.date.localeCompare(a.date))[0];
+  }
+
+  const handleActivate = async (targetId: string) => {
+    const target = targets.find((t) => t.id === targetId);
+    if (!target) return;
+    await saveTarget({ ...target, status: 'active' });
+    loadData();
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView contentContainerStyle={styles.scroll}>
@@ -58,28 +71,27 @@ export function DashboardScreen({ navigation }: Props) {
           onPress={() => navigation.navigate('ChallengeDetail')}
         />
 
-        {/* Active Roster — placeholder, cards built in Task 6 */}
+        {/* Active Roster */}
         <Text style={styles.sectionLabel}>Active</Text>
         {activeTargets.map((target) => (
-          <TouchableOpacity
+          <PersonCard
             key={target.id}
-            style={styles.personPlaceholder}
+            target={target}
+            lastInteraction={getLastInteraction(interactions, target.id)}
             onPress={() => navigation.navigate('PersonDetail', { targetId: target.id })}
-          >
-            <Text style={styles.personName}>{target.name}</Text>
-            <Text style={styles.personPoints}>{target.totalPoints} pts</Text>
-          </TouchableOpacity>
+          />
         ))}
         {activeTargets.length === 0 && (
           <Text style={styles.emptyText}>No active targets yet. Import contacts to get started.</Text>
         )}
 
-        {/* Bench — placeholder, built in Task 6 */}
-        {benchTargets.length > 0 && (
-          <View style={styles.benchPlaceholder}>
-            <Text style={styles.benchText}>{benchTargets.length} on the bench</Text>
-          </View>
-        )}
+        {/* Bench */}
+        <BenchSection
+          targets={benchTargets}
+          activeCount={activeTargets.length}
+          onActivate={handleActivate}
+          onPress={(targetId) => navigation.navigate('PersonDetail', { targetId })}
+        />
       </ScrollView>
 
       {/* FAB */}
@@ -101,12 +113,7 @@ const styles = StyleSheet.create({
   monthPill: { backgroundColor: COLORS.surfaceContainer, paddingHorizontal: 14, paddingVertical: 6, borderRadius: 20 },
   monthText: { color: COLORS.textMuted, fontSize: 13, fontWeight: '500' },
   sectionLabel: { fontSize: 11, fontWeight: '700', letterSpacing: 1.5, color: COLORS.textDim, marginBottom: 12, textTransform: 'uppercase' },
-  personPlaceholder: { backgroundColor: COLORS.surfaceContainer, borderRadius: 16, padding: 16, marginBottom: 10, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' },
-  personName: { color: COLORS.text, fontSize: 16, fontWeight: '700' },
-  personPoints: { color: COLORS.textMuted, fontSize: 16, fontWeight: '700' },
   emptyText: { color: COLORS.textDim, fontSize: 14, textAlign: 'center', marginVertical: 20 },
-  benchPlaceholder: { backgroundColor: COLORS.surfaceContainer, borderRadius: 12, padding: 14, marginTop: 20 },
-  benchText: { color: COLORS.textMuted, fontSize: 14 },
   fab: {
     position: 'absolute', bottom: 36, right: 24, width: 56, height: 56, borderRadius: 18,
     backgroundColor: COLORS.accent, alignItems: 'center', justifyContent: 'center',
