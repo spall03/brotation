@@ -1,33 +1,40 @@
 {
   "expo": {
-    "name": "brotation",
+    "name": "Brotation",
     "slug": "brotation",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
-    "userInterfaceStyle": "light",
-    "newArchEnabled": true,
+    "userInterfaceStyle": "dark",
     "splash": {
-      "image": "./assets/splash-icon.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#131313"
     },
     "ios": {
-      "supportsTablet": true
-    },
-    "android": {
-      "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
-      },
-      "edgeToEdgeEnabled": true,
-      "predictiveBackGestureEnabled": false
-    },
-    "web": {
-      "favicon": "./assets/favicon.png"
+      "supportsTablet": false,
+      "bundleIdentifier": "com.2ndstrike.brotation",
+      "buildNumber": "1",
+      "infoPlist": {
+        "NSContactsUsageDescription": "Brotation uses your contacts to help you import friends to track."
+      }
     },
     "plugins": [
-      "expo-font"
-    ]
+      [
+        "expo-contacts",
+        {
+          "contactsPermission": "Brotation uses your contacts to import friends."
+        }
+      ],
+      [
+        "expo-notifications",
+        {
+          "icon": "./assets/icon.png"
+        }
+      ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": ""
+      }
+    }
   }
 }
