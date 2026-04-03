@@ -6,6 +6,7 @@ import { DashboardScreen } from './src/screens/DashboardScreen';
 import { PersonDetailScreen } from './src/screens/PersonDetailScreen';
 import { ChallengeDetailScreen } from './src/screens/ChallengeDetailScreen';
 import { LogInteractionScreen } from './src/screens/LogInteractionScreen';
+import { ContactImportScreen } from './src/screens/ContactImportScreen';
 import { COLORS } from './src/constants';
 import { getTargets, getInteractions } from './src/storage';
 import { suggestMonthlyTarget, getMonthlyHorizontalProgress, getCurrentMonth } from './src/challenges';
@@ -50,6 +51,7 @@ export default function App() {
         <Stack.Screen name="PersonDetail" component={PersonDetailScreen} />
         <Stack.Screen name="ChallengeDetail" component={ChallengeDetailScreen} />
         <Stack.Screen name="LogInteraction" component={LogInteractionScreen} />
+        <Stack.Screen name="ContactImport" component={ContactImportScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

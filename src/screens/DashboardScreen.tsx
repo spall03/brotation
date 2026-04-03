@@ -82,7 +82,15 @@ export function DashboardScreen({ navigation }: Props) {
           />
         ))}
         {activeTargets.length === 0 && (
-          <Text style={styles.emptyText}>No active targets yet. Import contacts to get started.</Text>
+          <View style={{ alignItems: 'center', marginVertical: 20 }}>
+            <Text style={styles.emptyText}>No active targets yet.</Text>
+            <TouchableOpacity
+              style={{ backgroundColor: COLORS.accent, borderRadius: 12, paddingHorizontal: 24, paddingVertical: 14, marginTop: 12 }}
+              onPress={() => navigation.navigate('ContactImport')}
+            >
+              <Text style={{ color: '#FFFFFF', fontSize: 15, fontWeight: '700' }}>Import from Contacts</Text>
+            </TouchableOpacity>
+          </View>
         )}
 
         {/* Bench */}
