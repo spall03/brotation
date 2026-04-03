@@ -6,7 +6,8 @@ import { ChallengeCard } from '../components/ChallengeCard';
 import { PersonCard } from '../components/PersonCard';
 import { BenchSection } from '../components/BenchSection';
 import { Toast } from '../components/Toast';
-import { getTargets, getInteractions, getMonthlyResults, saveTarget } from '../storage';
+import { getTargets, getInteractions, getMonthlyResults, saveTarget, saveMonthlyResult } from '../storage';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { getCurrentMonth, suggestMonthlyTarget, getMonthlyHorizontalProgress, getCurrentStreak } from '../challenges';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../../App';
@@ -36,6 +37,23 @@ export function DashboardScreen({ navigation, route }: Props) {
     setTargets(t);
     setInteractions(i);
     setMonthlyResults(r);
+
+    // Check for month rollover
+    const lastCheckedMonth = await AsyncStorage.getItem('brotation:lastCheckedMonth');
+    const currentMo = getCurrentMonth();
+    if (lastCheckedMonth && lastCheckedMonth !== currentMo) {
+      const prevProgress = getMonthlyHorizontalProgress(i, lastCheckedMonth);
+      const prevActiveCount = t.filter((x) => x.status === 'active').length;
+      const prevTarget = suggestMonthlyTarget(prevActiveCount);
+      await saveMonthlyResult({
+        month: lastCheckedMonth,
+        target: prevTarget,
+        actual: prevProgress,
+        hit: prevProgress >= prevTarget,
+      });
+      setMonthlyResults(await getMonthlyResults());
+    }
+    await AsyncStorage.setItem('brotation:lastCheckedMonth', currentMo);
   }, []);
 
   useFocusEffect(useCallback(() => { loadData(); }, [loadData]));
