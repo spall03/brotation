@@ -61,6 +61,10 @@ export function PersonDetailScreen({ route, navigation }: Props) {
     const newPoints = target.totalPoints + points;
     const newStage = getStageForPoints(newPoints);
     await saveTarget({ ...target, totalPoints: newPoints, stage: newStage });
+    if (newStage !== target.stage) {
+      const stageLabel = newStage === 'bro' ? 'Bro 🔥' : 'Building 🤝';
+      Alert.alert('Level Up!', `${target.name.split(' ')[0]} is now ${stageLabel}!`);
+    }
     loadData();
   };
 

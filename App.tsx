@@ -13,7 +13,7 @@ import { suggestMonthlyTarget, getMonthlyHorizontalProgress, getCurrentMonth } f
 import { pickNudge, scheduleDailyNudge, requestNotificationPermissions } from './src/notifications';
 
 export type RootStackParamList = {
-  Dashboard: undefined;
+  Dashboard: { toast?: string } | undefined;
   PersonDetail: { targetId: string };
   ChallengeDetail: undefined;
   LogInteraction: { targetId?: string };

@@ -1,10 +1,11 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useState, useEffect } from 'react';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity, SafeAreaView } from 'react-native';
 import { COLORS } from '../constants';
 import { Target, Interaction, MonthlyResult } from '../types';
 import { ChallengeCard } from '../components/ChallengeCard';
 import { PersonCard } from '../components/PersonCard';
 import { BenchSection } from '../components/BenchSection';
+import { Toast } from '../components/Toast';
 import { getTargets, getInteractions, getMonthlyResults, saveTarget } from '../storage';
 import { getCurrentMonth, suggestMonthlyTarget, getMonthlyHorizontalProgress, getCurrentStreak } from '../challenges';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
@@ -13,10 +14,18 @@ import { useFocusEffect } from '@react-navigation/native';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'Dashboard'>;
 
-export function DashboardScreen({ navigation }: Props) {
+export function DashboardScreen({ navigation, route }: Props) {
   const [targets, setTargets] = useState<Target[]>([]);
   const [interactions, setInteractions] = useState<Interaction[]>([]);
   const [monthlyResults, setMonthlyResults] = useState<MonthlyResult[]>([]);
+  const [toast, setToast] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (route.params?.toast) {
+      setToast(route.params.toast);
+      navigation.setParams({ toast: undefined });
+    }
+  }, [route.params?.toast]);
 
   const loadData = useCallback(async () => {
     const [t, i, r] = await Promise.all([
@@ -109,6 +118,7 @@ export function DashboardScreen({ navigation }: Props) {
       >
         <Text style={styles.fabText}>+</Text>
       </TouchableOpacity>
+      <Toast message={toast ?? ''} visible={!!toast} onHide={() => setToast(null)} />
     </SafeAreaView>
   );
 }

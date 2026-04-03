@@ -39,21 +39,26 @@ export function LogInteractionScreen({ navigation, route }: Props) {
     const newPoints = target.totalPoints + points;
     const newStage = getStageForPoints(newPoints);
     await saveTarget({ ...target, totalPoints: newPoints, stage: newStage });
+    const graduated = newStage !== target.stage;
+    const stageLabel = newStage === 'bro' ? 'Bro 🔥' : newStage === 'building' ? 'Building 🤝' : '';
+    const toastMsg = graduated
+      ? `${target.name.split(' ')[0]} leveled up to ${stageLabel}!`
+      : `+${points} pts with ${target.name.split(' ')[0]}`;
     if (target.status === 'bench') {
       const activeCount = activeTargets.length;
       if (activeCount < ACTIVE_CAP) {
         Alert.alert(`Move ${target.name.split(' ')[0]} to Active?`, 'You logged an interaction — want to start actively tracking them?', [
-          { text: 'Keep on Bench', style: 'cancel', onPress: () => goBack(points, target.name) },
-          { text: 'Activate', onPress: async () => { await saveTarget({ ...target, totalPoints: newPoints, stage: newStage, status: 'active' }); goBack(points, target.name); } },
+          { text: 'Keep on Bench', style: 'cancel', onPress: () => goBack(toastMsg) },
+          { text: 'Activate', onPress: async () => { await saveTarget({ ...target, totalPoints: newPoints, stage: newStage, status: 'active' }); goBack(toastMsg); } },
         ]);
         return;
       }
     }
-    goBack(points, target.name);
+    goBack(toastMsg);
   }, [selectedTargetId, selectedType, note, targets]);
 
-  const goBack = (points: number, name: string) => {
-    navigation.navigate('Dashboard');
+  const goBack = (toastMsg: string) => {
+    navigation.navigate('Dashboard', { toast: toastMsg });
   };
 
   if (!selectedTargetId) {
