@@ -2,6 +2,7 @@ import React, { useCallback, useState } from 'react';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity, SafeAreaView } from 'react-native';
 import { COLORS } from '../constants';
 import { Target, Interaction, MonthlyResult } from '../types';
+import { ChallengeCard } from '../components/ChallengeCard';
 import { getTargets, getInteractions, getMonthlyResults } from '../storage';
 import { getCurrentMonth, suggestMonthlyTarget, getMonthlyHorizontalProgress, getCurrentStreak } from '../challenges';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
@@ -48,17 +49,14 @@ export function DashboardScreen({ navigation }: Props) {
           </View>
         </View>
 
-        {/* Challenge Card — placeholder, built in Task 5 */}
-        <TouchableOpacity
-          style={styles.challengePlaceholder}
+        <ChallengeCard
+          monthlyProgress={monthlyProgress}
+          monthlyTarget={monthlyTarget}
+          streak={streak}
+          activeTargets={activeTargets}
+          interactions={interactions}
           onPress={() => navigation.navigate('ChallengeDetail')}
-        >
-          <Text style={styles.challengeLabel}>MONTHLY CHALLENGE</Text>
-          <Text style={styles.challengeNumber}>
-            {monthlyProgress} <Text style={styles.challengeTarget}>/ {monthlyTarget}</Text>
-          </Text>
-          {streak > 0 && <Text style={styles.streak}>🔥 {streak} mo streak</Text>}
-        </TouchableOpacity>
+        />
 
         {/* Active Roster — placeholder, cards built in Task 6 */}
         <Text style={styles.sectionLabel}>Active</Text>
@@ -102,11 +100,6 @@ const styles = StyleSheet.create({
   title: { fontSize: 28, fontWeight: '800', color: COLORS.accent },
   monthPill: { backgroundColor: COLORS.surfaceContainer, paddingHorizontal: 14, paddingVertical: 6, borderRadius: 20 },
   monthText: { color: COLORS.textMuted, fontSize: 13, fontWeight: '500' },
-  challengePlaceholder: { backgroundColor: COLORS.surfaceContainer, borderRadius: 16, padding: 20, marginBottom: 24 },
-  challengeLabel: { fontSize: 11, fontWeight: '700', letterSpacing: 1.5, color: COLORS.accent, marginBottom: 8 },
-  challengeNumber: { fontSize: 48, fontWeight: '800', color: COLORS.text },
-  challengeTarget: { fontSize: 32, fontWeight: '300', color: COLORS.textDim },
-  streak: { fontSize: 12, color: COLORS.gold, marginTop: 8 },
   sectionLabel: { fontSize: 11, fontWeight: '700', letterSpacing: 1.5, color: COLORS.textDim, marginBottom: 12, textTransform: 'uppercase' },
   personPlaceholder: { backgroundColor: COLORS.surfaceContainer, borderRadius: 16, padding: 16, marginBottom: 10, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' },
   personName: { color: COLORS.text, fontSize: 16, fontWeight: '700' },
