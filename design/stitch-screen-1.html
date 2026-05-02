@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Brotation | Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700;800;900&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary-container": "#f97316",
+                        "surface-dim": "#131313",
+                        "tertiary": "#ffb783",
+                        "on-tertiary-fixed-variant": "#713700",
+                        "secondary-fixed": "#ffe16d",
+                        "surface-bright": "#393939",
+                        "outline-variant": "#584237",
+                        "outline": "#a78b7d",
+                        "on-secondary-fixed-variant": "#544600",
+                        "secondary-container": "#ffdb3c",
+                        "background": "#131313",
+                        "surface-container-highest": "#353534",
+                        "inverse-primary": "#9d4300",
+                        "on-surface": "#e5e2e1",
+                        "surface-container-low": "#1c1b1b",
+                        "on-background": "#e5e2e1",
+                        "secondary-fixed-dim": "#e9c400",
+                        "inverse-surface": "#e5e2e1",
+                        "on-secondary": "#3a3000",
+                        "on-tertiary-container": "#522700",
+                        "surface-container": "#201f1f",
+                        "primary-fixed": "#ffdbca",
+                        "tertiary-fixed-dim": "#ffb783",
+                        "secondary": "#fff9ef",
+                        "surface-container-high": "#2a2a2a",
+                        "surface-container-lowest": "#0e0e0e",
+                        "on-tertiary": "#4f2500",
+                        "primary": "#ffb690",
+                        "surface-tint": "#ffb690",
+                        "tertiary-container": "#e5812c",
+                        "error-container": "#93000a",
+                        "on-error-container": "#ffdad6",
+                        "on-surface-variant": "#e0c0b1",
+                        "inverse-on-surface": "#313030",
+                        "on-secondary-container": "#725f00",
+                        "on-error": "#690005",
+                        "on-secondary-fixed": "#221b00",
+                        "primary-fixed-dim": "#ffb690",
+                        "surface-variant": "#353534",
+                        "surface": "#131313",
+                        "tertiary-fixed": "#ffdcc5",
+                        "on-tertiary-fixed": "#301400",
+                        "on-primary": "#552100",
+                        "error": "#ffb4ab",
+                        "on-primary-fixed-variant": "#783200",
+                        "on-primary-container": "#582200",
+                        "on-primary-fixed": "#341100"
+                    },
+                    fontFamily: {
+                        "headline": ["Plus Jakarta Sans"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .achievement-glow {
+            box-shadow: 0 0 15px rgba(255, 219, 60, 0.3);
+        }
+        .glass-nav {
+            background: rgba(32, 31, 31, 0.6);
+            backdrop-filter: blur(20px);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface font-body selection:bg-primary-container/30">
+<!-- TopAppBar -->
+<header class="bg-[#131313] fixed top-0 z-50 w-full flex justify-between items-center px-6 py-4">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[#F97316]">menu</span>
+<h1 class="text-2xl font-black italic text-[#F97316] tracking-tighter uppercase font-headline">BROTATION</h1>
+</div>
+<div class="flex items-center gap-3">
+<div class="bg-surface-container-highest px-3 py-1 rounded-full border border-outline-variant/20">
+<span class="text-xs font-bold text-on-surface-variant tracking-wider uppercase">March 2026</span>
+</div>
+<div class="w-10 h-10 rounded-xl overflow-hidden bg-surface-container-high border-2 border-primary-container/20">
+<img class="w-full h-full object-cover" data-alt="Close-up portrait of a friendly dad with a short beard and glasses, warm outdoor lighting in a backyard setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAPR9mVcRrgiSQqmXFapq9q6bby6bXj2Gf_SCG-rSP12RwIBEcAMvIQEnlvCLndlF7JuL-P5eTDJppVxNNuOMuzRoKxfVJDQMe6ZERH8ESfnu_7dBtChRfGqFbsqAteADFTz0gnK83TwUSNPdM9R0NctzLLZtBDWEoAKBusdwwlnTsdbSzczwtAosUcEWS9ANrKKduuNWIDK7p1SoDiEJQDL3OvYFPbmvR7Zo0xe3ucAFNcZ2-EFs-5gpZ0iHIrftMv1O-hLUDZa9s"/>
+</div>
+</div>
+</header>
+<main class="pt-24 pb-32 px-6 max-w-2xl mx-auto space-y-8">
+<!-- Challenge Card -->
+<section>
+<div class="relative overflow-hidden rounded-xl bg-surface-container border-t-4 border-primary-container shadow-2xl">
+<div class="p-6 space-y-4">
+<div class="flex justify-between items-start">
+<span class="font-headline font-extrabold text-[10px] tracking-[0.2em] text-primary-container uppercase">Monthly Challenge</span>
+<div class="flex items-center gap-1 bg-secondary-container/10 px-2 py-0.5 rounded achievement-glow">
+<span class="text-[10px] font-bold text-secondary-container tracking-tight uppercase">🔥 2 mo streak</span>
+</div>
+</div>
+<div class="flex items-baseline gap-1">
+<span class="text-5xl font-black font-headline text-on-surface">2</span>
+<span class="text-2xl font-bold font-headline text-on-surface-variant">/ 3</span>
+</div>
+<p class="text-on-surface font-medium leading-tight">Hang out with 3 different guys this month</p>
+<!-- Momentum Bar -->
+<div class="space-y-2">
+<div class="h-2 w-full bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full w-[66%] bg-gradient-to-r from-primary-container to-secondary-container rounded-full"></div>
+</div>
+</div>
+<!-- Hype-Chips -->
+<div class="flex flex-wrap gap-2 pt-2">
+<div class="bg-surface-container-low px-3 py-1.5 rounded-lg flex items-center gap-2 -rotate-1">
+<div class="w-2 h-2 rounded-full bg-green-500"></div>
+<span class="text-xs font-bold text-on-surface-variant">Jake 2/2</span>
+</div>
+<div class="bg-surface-container-low px-3 py-1.5 rounded-lg flex items-center gap-2 rotate-1">
+<div class="w-2 h-2 rounded-full bg-primary-container"></div>
+<span class="text-xs font-bold text-on-surface-variant">Marcus 0/2</span>
+</div>
+<div class="bg-surface-container-low px-3 py-1.5 rounded-lg flex items-center gap-2 -rotate-1">
+<div class="w-2 h-2 rounded-full bg-green-500"></div>
+<span class="text-xs font-bold text-on-surface-variant">Dan 1/2</span>
+</div>
+<div class="bg-surface-container-low px-3 py-1.5 rounded-lg flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-outline"></div>
+<span class="text-xs font-bold text-on-surface-variant">Ravi 1/1</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Active Roster -->
+<section class="space-y-6">
+<div class="flex items-center gap-4">
+<h2 class="text-xs font-black tracking-[0.3em] uppercase text-on-surface-variant whitespace-nowrap">Active Roster</h2>
+<div class="h-[1px] w-full bg-surface-container-highest"></div>
+</div>
+<div class="grid grid-cols-1 gap-3">
+<!-- Person Card: Jake -->
+<div class="group bg-surface-container hover:bg-surface-container-high transition-all p-4 rounded-xl flex items-center gap-4 border border-transparent hover:border-outline-variant/20">
+<div class="w-14 h-14 rounded-xl bg-[#2D5A27] flex items-center justify-center font-black text-xl text-white font-headline shadow-inner">JK</div>
+<div class="flex-1 space-y-1">
+<div class="flex justify-between items-center">
+<h3 class="font-bold text-on-surface">Jake Kowalski</h3>
+<span class="text-[9px] font-black px-2 py-0.5 rounded bg-blue-500/20 text-blue-400 uppercase tracking-widest">Building</span>
+</div>
+<p class="text-xs text-on-surface-variant font-medium">Beers last Thursday · 4d ago</p>
+<div class="flex items-center gap-3 pt-1">
+<div class="h-1 flex-1 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full w-[45%] bg-primary-container"></div>
+</div>
+<span class="text-[10px] font-bold text-primary">38 pts</span>
+</div>
+</div>
+</div>
+<!-- Person Card: Marcus -->
+<div class="group bg-surface-container hover:bg-surface-container-high transition-all p-4 rounded-xl flex items-center gap-4 border border-transparent hover:border-outline-variant/20">
+<div class="w-14 h-14 rounded-xl bg-[#5C4033] flex items-center justify-center font-black text-xl text-white font-headline shadow-inner">MR</div>
+<div class="flex-1 space-y-1">
+<div class="flex justify-between items-center">
+<h3 class="font-bold text-on-surface">Marcus Robinson</h3>
+<span class="text-[9px] font-black px-2 py-0.5 rounded bg-green-500/20 text-green-400 uppercase tracking-widest">Acquaintance</span>
+</div>
+<p class="text-xs text-on-surface-variant font-medium">Chatted at pickup · 2w ago</p>
+<div class="flex items-center gap-3 pt-1">
+<div class="h-1 flex-1 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full w-[15%] bg-primary-container"></div>
+</div>
+<span class="text-[10px] font-bold text-primary">7 pts</span>
+</div>
+</div>
+</div>
+<!-- Person Card: Dan -->
+<div class="group bg-surface-container hover:bg-surface-container-high transition-all p-4 rounded-xl flex items-center gap-4 border border-transparent hover:border-outline-variant/20">
+<div class="w-14 h-14 rounded-xl bg-[#1E3A8A] flex items-center justify-center font-black text-xl text-white font-headline shadow-inner">DH</div>
+<div class="flex-1 space-y-1">
+<div class="flex justify-between items-center">
+<h3 class="font-bold text-on-surface">Dan Hernandez</h3>
+<span class="text-[9px] font-black px-2 py-0.5 rounded bg-blue-500/20 text-blue-400 uppercase tracking-widest">Building</span>
+</div>
+<p class="text-xs text-on-surface-variant font-medium">Coffee last week · 8d ago</p>
+<div class="flex items-center gap-3 pt-1">
+<div class="h-1 flex-1 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full w-[38%] bg-primary-container"></div>
+</div>
+<span class="text-[10px] font-bold text-primary">29 pts</span>
+</div>
+</div>
+</div>
+<!-- Person Card: Ravi -->
+<div class="group bg-surface-container hover:bg-surface-container-high transition-all p-4 rounded-xl flex items-center gap-4 border border-transparent hover:border-outline-variant/20 achievement-glow">
+<div class="w-14 h-14 rounded-xl bg-[#B45309] flex items-center justify-center font-black text-xl text-white font-headline shadow-inner">RP</div>
+<div class="flex-1 space-y-1">
+<div class="flex justify-between items-center">
+<h3 class="font-bold text-on-surface">Ravi Patel</h3>
+<span class="text-[9px] font-black px-2 py-0.5 rounded bg-secondary-container/20 text-secondary-container uppercase tracking-widest">Bro</span>
+</div>
+<p class="text-xs text-on-surface-variant font-medium">Hiking Saturday · 2d ago</p>
+<div class="flex items-center gap-3 pt-1">
+<div class="h-1 flex-1 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full w-[92%] bg-gradient-to-r from-primary-container to-secondary-container"></div>
+</div>
+<span class="text-[10px] font-bold text-secondary-container">162 pts</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Bench -->
+<section>
+<button class="w-full bg-surface-container-low hover:bg-surface-container py-4 px-6 rounded-xl flex items-center justify-between group transition-colors">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-outline">inbox</span>
+<span class="text-sm font-bold text-on-surface-variant uppercase tracking-widest">The Bench (8 more people)</span>
+</div>
+<span class="material-symbols-outlined text-outline group-hover:translate-y-0.5 transition-transform">expand_more</span>
+</button>
+</section>
+</main>
+<!-- FAB -->
+<button class="fixed bottom-28 right-6 w-14 h-14 bg-primary-container text-on-primary-container rounded-xl shadow-lg flex items-center justify-center active:scale-90 transition-transform duration-200 z-50">
+<span class="material-symbols-outlined text-3xl font-bold">add</span>
+</button>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center px-4 pb-6 pt-3 bg-[#201F1F]/60 backdrop-blur-xl z-50 rounded-t-xl border-t border-[#353534]/30 shadow-[0_-10px_30px_rgba(0,0,0,0.5)]">
+<!-- Active Tab: Roster -->
+<a class="flex flex-col items-center justify-center text-[#F97316] bg-[#F97316]/10 rounded-xl px-4 py-1 active:scale-90 duration-200 hover:bg-[#353534] transition-all" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">groups</span>
+<span class="font-['Inter'] text-[10px] font-bold uppercase tracking-widest mt-1">Roster</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#E0C0B1] px-4 py-1 opacity-60 active:scale-90 duration-200 hover:bg-[#353534] transition-all" href="#">
+<span class="material-symbols-outlined">fitness_center</span>
+<span class="font-['Inter'] text-[10px] font-bold uppercase tracking-widest mt-1">Challenges</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#E0C0B1] px-4 py-1 opacity-60 active:scale-90 duration-200 hover:bg-[#353534] transition-all" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-['Inter'] text-[10px] font-bold uppercase tracking-widest mt-1">Profile</span>
+</a>
+</nav>
+</body></html>
